@@ -42,10 +42,11 @@ app.config["SQLALCHEMY_DATABASE_URI"] = (
     or "postgresql+psycopg2://user:pass@host:5432/flask_app_db"
 )
 
-["SQLALCHEMY_ENGINE_OPTIONS"] = {
+app.config["SQLALCHEMY_ENGINE_OPTIONS"] = {
     "pool_pre_ping": True,
     "pool_recycle": 280,
 }
+
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SQLALCHEMY_POOL_RECYCLE"] = 280
 app.config["SQLALCHEMY_POOL_PRE_PING"] = True
