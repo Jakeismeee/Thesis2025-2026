@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}System Activity Logs{% endblock %}
+
+{% block content %}
+<pre>
+{% for line in logs %}
+{{ line }}
+{% endfor %}
+</pre>
+{% endblock %}

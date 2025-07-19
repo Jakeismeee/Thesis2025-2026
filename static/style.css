@@ -1,0 +1,73 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: #f2f2f2;
+    padding: 40px;
+}
+
+form {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+input[type="submit"] {
+    margin-top: 10px;
+    padding: 10px 20px;
+}
+
+.csv-preview {
+    max-width: 100%;
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+.csv-preview table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.csv-preview th,
+.csv-preview td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+nav {
+    margin-top: 20px;
+}
+
+nav a {
+    margin-right: 15px;
+    text-decoration: none;
+    color: #0a5783;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+ul {
+    list-style: none; /* removes bullet points */
+    padding: 0;
+    margin: 0 auto;
+    max-width: 500px;
+    text-align: left;
+}
+
+li {
+    background-color: #ffffff;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    font-size: 16px;
+}
+
+button {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}

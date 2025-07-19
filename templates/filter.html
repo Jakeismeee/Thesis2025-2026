@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Filter Sales{% endblock %}
+
+{% block content %}
+<h2>Filter Sales Data</h2>
+<form method="POST">
+  <div>
+    <label for="csv_file">Select CSV File:</label>
+    <select name="csv_file" required>
+      <option value="" disabled selected>Select a file</option>
+      {% for file in files %}
+        <option value="{{ file }}">{{ file }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div>
+    <label for="filter_type">Filter Type:</label>
+    <select name="filter_type" required>
+      <option value="most_sold">Most Sold Products</option>
+      <option value="least_sold">Least Sold Products</option>
+    </select>
+  </div>
+
+  <button type="submit">Apply</button>
+</form>
+{% endblock %}

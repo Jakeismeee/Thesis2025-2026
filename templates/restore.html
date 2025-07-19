@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}Restore CSV Backup{% endblock %}
+
+{% block content %}
+<form method="POST" enctype="multipart/form-data">
+  <input type="file" name="file" required>
+  <button type="submit">Restore File</button>
+</form>
+{% endblock %}

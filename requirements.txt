@@ -1,0 +1,9 @@
+flask
+pandas
+matplotlib
+statsmodels
+seaborn
+numpy
+scikit-learn
+tensorflow
+keras
