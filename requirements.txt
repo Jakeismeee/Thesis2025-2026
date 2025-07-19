@@ -5,6 +5,7 @@ Flask-SQLAlchemy
 Flask-WTF
 Werkzeug
 statsmodels
+matplotlib
 
 # Database Connector
 PyMySQL
