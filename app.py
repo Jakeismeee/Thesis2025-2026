@@ -36,12 +36,13 @@ app = Flask(__name__)
 # SQLAlchemy Setup
 db = SQLAlchemy()  # ✅ Declare SQLAlchemy without app
 
-# Database Config
+# PostgreSQL Config
 app.config["SQLALCHEMY_DATABASE_URI"] = (
     os.getenv("DATABASE_URL")
-    or "mysql+pymysql://user:pass@host:3306/flask_app_db"
+    or "postgresql+psycopg2://user:pass@host:5432/flask_app_db"
 )
-app.config["SQLALCHEMY_ENGINE_OPTIONS"] = {
+
+["SQLALCHEMY_ENGINE_OPTIONS"] = {
     "pool_pre_ping": True,
     "pool_recycle": 280,
 }
