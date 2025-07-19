@@ -4,6 +4,7 @@ Flask-Login
 Flask-SQLAlchemy
 Flask-WTF
 Werkzeug
+statsmodels
 
 # Database Connector
 PyMySQL
