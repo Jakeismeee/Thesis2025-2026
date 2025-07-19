@@ -1,9 +1,23 @@
-flask
+# Web Framework and Extensions
+Flask
+Flask-Login
+Flask-SQLAlchemy
+Flask-WTF
+Werkzeug
+
+# Database Connector
+PyMySQL
+
+# Data Handling & Analysis
 pandas
-matplotlib
-statsmodels
-seaborn
-numpy
-scikit-learn
-tensorflow
-keras
+
+# Plotting and Visualization
+plotly
+requests
+
+# Add forecasting libraries below as needed
+# For example:
+# statsmodels
+# pmdarima
+# tensorflow
+# scikit-learn
