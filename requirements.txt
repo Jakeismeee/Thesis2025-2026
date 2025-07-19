@@ -6,6 +6,9 @@ Flask-WTF
 Werkzeug
 statsmodels
 matplotlib
+scikit-learn
+tensorflow
+pmdarima
 
 # Database Connector
 PyMySQL
