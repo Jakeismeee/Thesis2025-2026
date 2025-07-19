@@ -7,7 +7,7 @@ Werkzeug
 statsmodels
 matplotlib
 scikit-learn
-tensorflow
+tensorflow==2.14.0
 pmdarima
 
 # Database Connector
