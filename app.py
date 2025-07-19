@@ -43,12 +43,26 @@ from pso_lstm import run_lstm_pso_forecast
 app = Flask(__name__)
 
 # --- Configuration ---
-SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL")
-app.config["SECRET_KEY"] = "your_secret_key_here"  # Change this to a strong, random key in production
-app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://flask_app_db_nlpk_user:d8Mg8IPdrKa9vOXiXFB7o5FTXd1PIhum@dpg-d1tl35mr433s73druqpg-a:5432/flask_app_db_nlpk"
+from flask_sqlalchemy import SQLAlchemy
+import os
+
+# Use environment variable or hardcoded URI
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL") or \
+    "mysql+pymysql://flask_app_db_nlpk_user:d8Mg8IPdrKa9vOXiXFB7o5FTXd1PIhum@dpg-d1tl35mr433s73druqpg-a:5432/flask_app_db_nlpk"
+
+# Add these to improve stability and avoid dropped connections:
+app.config["SQLALCHEMY_POOL_RECYCLE"] = 280  # recycle connections before MySQL closes them
+app.config["SQLALCHEMY_POOL_PRE_PING"] = True  # ping DB before using connection (avoids stale ones)
+
+# Other config
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+app.config["SECRET_KEY"] = "your_secret_key_here"
 app.config["RECAPTCHA_PUBLIC_KEY"] = "6LdYqocrAAAAAMKfjNKl4F24swM5tkWLK3f2x1rR"
 app.config["RECAPTCHA_PRIVATE_KEY"] = "6LdYqocrAAAAANa485NBDEa1M-ASN9zcP-pE21PW"
+
+# Initialize DB
+db = SQLAlchemy(app)
+
 
 # --- Database and Login Manager Initialization ---
 db = SQLAlchemy(app)
