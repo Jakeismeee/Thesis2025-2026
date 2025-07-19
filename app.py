@@ -39,7 +39,7 @@ db = SQLAlchemy()  # ✅ Declare SQLAlchemy without app
 # Database Config
 app.config["SQLALCHEMY_DATABASE_URI"] = (
     os.getenv("DATABASE_URL")
-    or "mysql+pymysql://user:pass@host:3306/dbname?connect_timeout=10"
+    or "mysql+pymysql://user:pass@host:3306/flask_app_db"
 )
 app.config["SQLALCHEMY_ENGINE_OPTIONS"] = {
     "pool_pre_ping": True,
