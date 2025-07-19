@@ -37,8 +37,14 @@ app = Flask(__name__)
 db = SQLAlchemy()  # ✅ Declare SQLAlchemy without app
 
 # Database Config
-app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL") or \
-    "mysql+pymysql://flask_app_db_nlpk_user:d8Mg8IPdrKa9vOXiXFB7o5FTXd1PIhum@dpg-d1tl35mr433s73druqpg-a:5432/flask_app_db_nlpk"
+app.config["SQLALCHEMY_DATABASE_URI"] = (
+    os.getenv("DATABASE_URL")
+    or "mysql+pymysql://user:pass@host:3306/dbname?connect_timeout=10"
+)
+app.config["SQLALCHEMY_ENGINE_OPTIONS"] = {
+    "pool_pre_ping": True,
+    "pool_recycle": 280,
+}
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SQLALCHEMY_POOL_RECYCLE"] = 280
 app.config["SQLALCHEMY_POOL_PRE_PING"] = True
@@ -446,4 +452,7 @@ def change_username():
 
 if __name__ == "__main__":
     with app.app_context():
-        db.create_all()
+        try:
+            db.create_all()
+        except Exception as e:
+            print(f"[ERROR] Could not create tables: {e}")
