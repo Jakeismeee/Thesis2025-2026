@@ -30,6 +30,9 @@ from wtforms.validators import EqualTo, InputRequired, Length, ValidationError
 from forecast import analyze_product_categories, create_seasonal_forecast
 from pso_lstm import run_lstm_pso_forecast
 
+from dotenv import load_dotenv
+load_dotenv()
+
 # --- Flask App and Config ---
 app = Flask(__name__)
 
@@ -451,10 +454,11 @@ def change_username():
 
     return render_template("change_username.html", form=form)
 
-
 if __name__ == "__main__":
     with app.app_context():
         try:
             db.create_all()
         except Exception as e:
             print(f"[ERROR] Could not create tables: {e}")
+    
+  

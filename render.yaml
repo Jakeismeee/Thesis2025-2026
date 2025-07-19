@@ -1,11 +1,11 @@
 services:
   - type: web
-    name: flask-forecast-app
+    name: flask-app
     env: python
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn app:app
     envVars:
       - key: DATABASE_URL
-        value: <your_database_url>
-      - key: FLASK_ENV
-        value: production
+        fromDatabase:
+          name: flask_app_db
+          property: connectionString
