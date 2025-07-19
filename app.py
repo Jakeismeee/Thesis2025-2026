@@ -38,10 +38,8 @@ db = SQLAlchemy()  # ✅ Declare SQLAlchemy without app
 
 # PostgreSQL Config
 # Use DATABASE_URL from environment or fallback to hardcoded value
-app.config["SQLALCHEMY_DATABASE_URI"] = (
-    os.getenv("DATABASE_URL") or
-    "postgresql+psycopg2://flask_app_db_nlpk_user:d8Mg8IPdrKa9vOXiXFB7o5FTXd1PIhum@dpg-d1tl35mr433s73druqpg-a/flask_app_db_nlpk"
-)
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql+psycopg2://flask_app_db_nlpk_user:d8Mg8IPdrKa9vOXiXFB7o5FTXd1PIhum@dpg-d1tl35mr433s73druqpg-a/flask_app_db_nlpk"
+
 
 
 app.config["SQLALCHEMY_ENGINE_OPTIONS"] = {
