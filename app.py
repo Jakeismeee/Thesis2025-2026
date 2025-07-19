@@ -39,7 +39,7 @@ db = SQLAlchemy()  # ✅ Declare SQLAlchemy without app
 # PostgreSQL Config
 app.config["SQLALCHEMY_DATABASE_URI"] = (
     os.getenv("DATABASE_URL")
-    or "postgresql+psycopg2://user:@host:5432/flask_app_db"
+    or "postgresql+psycopg2://root:@host:5432/flask_app_db"
 )
 
 app.config["SQLALCHEMY_ENGINE_OPTIONS"] = {
