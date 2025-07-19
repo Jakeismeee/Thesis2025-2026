@@ -1,35 +1,24 @@
+# --- Environment Setup ---
 import os
-
 os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
+# --- Imports ---
 import shutil
 from datetime import datetime
 
 import pandas as pd
-import requests # Still needed for potential future direct API calls, though verify_recaptcha is removed
-
-import os
-import pandas as pd
+import requests
 import plotly.express as px
 import plotly.io as pio
 
 from flask import (
-    Flask,
-    flash,
-    redirect,
-    render_template,
-    request,
-    send_file,
-    url_for,
+    Flask, flash, redirect, render_template, request,
+    send_file, url_for
 )
 from flask_login import (
-    LoginManager,
-    UserMixin,
-    current_user,
-    login_required,
-    login_user,
-    logout_user,
+    LoginManager, UserMixin, current_user,
+    login_required, login_user, logout_user
 )
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
@@ -38,38 +27,29 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from wtforms import PasswordField, StringField, SubmitField
 from wtforms.validators import EqualTo, InputRequired, Length, ValidationError
 
-# Local imports
 from forecast import analyze_product_categories, create_seasonal_forecast
 from pso_lstm import run_lstm_pso_forecast
 
-
-# --- Flask Application Setup ---
+# --- Flask App and Config ---
 app = Flask(__name__)
 
-# --- Configuration ---
-from flask_sqlalchemy import SQLAlchemy
-import os
+# SQLAlchemy Setup
+db = SQLAlchemy()  # ✅ Declare SQLAlchemy without app
 
-# Use environment variable or hardcoded URI
+# Database Config
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL") or \
     "mysql+pymysql://flask_app_db_nlpk_user:d8Mg8IPdrKa9vOXiXFB7o5FTXd1PIhum@dpg-d1tl35mr433s73druqpg-a:5432/flask_app_db_nlpk"
-
-# Add these to improve stability and avoid dropped connections:
-app.config["SQLALCHEMY_POOL_RECYCLE"] = 280  # recycle connections before MySQL closes them
-app.config["SQLALCHEMY_POOL_PRE_PING"] = True  # ping DB before using connection (avoids stale ones)
-
-# Other config
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+app.config["SQLALCHEMY_POOL_RECYCLE"] = 280
+app.config["SQLALCHEMY_POOL_PRE_PING"] = True
 app.config["SECRET_KEY"] = "your_secret_key_here"
 app.config["RECAPTCHA_PUBLIC_KEY"] = "6LdYqocrAAAAAMKfjNKl4F24swM5tkWLK3f2x1rR"
 app.config["RECAPTCHA_PRIVATE_KEY"] = "6LdYqocrAAAAANa485NBDEa1M-ASN9zcP-pE21PW"
 
-# Initialize DB
-db = SQLAlchemy(app)
+# Initialize SQLAlchemy with the Flask app
+db.init_app(app)  # ✅ Initialize here
 
-
-# --- Database and Login Manager Initialization ---
-db = SQLAlchemy(app)
+# Login Manager
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login"
@@ -78,7 +58,6 @@ login_manager.login_view = "login"
 UPLOAD_FOLDER = "uploads"
 PLOT_FOLDER = "static/plots"
 BACKUP_FOLDER = "backups"
-# LOG_FILE is no longer needed as logging is to DB
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(PLOT_FOLDER, exist_ok=True)
 os.makedirs(BACKUP_FOLDER, exist_ok=True)
