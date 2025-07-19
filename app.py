@@ -54,8 +54,8 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SQLALCHEMY_POOL_RECYCLE"] = 280
 app.config["SQLALCHEMY_POOL_PRE_PING"] = True
 app.config["SECRET_KEY"] = "your_secret_key_here"
-app.config["RECAPTCHA_PUBLIC_KEY"] = "6LdYqocrAAAAAMKfjNKl4F24swM5tkWLK3f2x1rR"
-app.config["RECAPTCHA_PRIVATE_KEY"] = "6LdYqocrAAAAANa485NBDEa1M-ASN9zcP-pE21PW"
+app.config["RECAPTCHA_PUBLIC_KEY"] = "6LfVmogrAAAAACpUeGmL48qxHlNmW0w045g5dD4G"
+app.config["RECAPTCHA_PRIVATE_KEY"] = "6LfVmogrAAAAAIwOgbP3302O3iOGJWd18j0ixUXc"
 
 # Initialize SQLAlchemy with the Flask app
 db.init_app(app)  # ✅ Initialize here
